@@ -202,8 +202,7 @@ module ReadDiagModRad
      integer, public, pointer       :: nType => null()
      integer, public, pointer       :: nObs  => null()
      integer, public, pointer       :: MaxChanl => null()
-     logical, public                        :: impact
-     real(r_kind), public           :: udef
+     logical                        :: impact
      contains
 !        procedure,   public  :: Open        => Open_
         generic,   public  :: Open        => Open_, Open__
@@ -466,27 +465,25 @@ contains
 
 
      info => self%oInfo
-!     if(associated(self%oInfo))then
-!        print*,'Ja associado!'
-!        stop
-!     endif
-     if (.not.associated(info))then    
-        !------------------------------------------!
-        ! Initialize some global variables
-        allocate(self%nType)
-        self%nType = 0
-        
-        allocate(self%nObs)
-        self%nObs = 0
-   
-        allocate(self%MaxChanl)
-        self%MaxChanl = 0
-   
-        self%impact = .false.
-   
-        self%udef   = udef
-        !------------------------------------------!
-     endif     
+     if(associated(info))then
+        print*,'Ja associado!'
+        stop
+     endif
+     
+     !------------------------------------------!
+     ! Initialize some global variables
+     allocate(self%nType)
+     self%nType = 0
+     
+     allocate(self%nObs)
+     self%nObs = 0
+
+     allocate(self%MaxChanl)
+     self%MaxChanl = 0
+
+     self%impact = .false.
+     !------------------------------------------!
+     
      lu  = 100
 
      if(present(IsisList))then
@@ -640,7 +637,7 @@ contains
               if(diagbufchan(4,i) > rtiny)then
                  chData(i)%oer  = one/diagbufchan(4,i) 
               else
-                 chData(i)%oer  = udef 
+                 chData%oer  = udef 
               endif
 
               chData(i)%idqc   = diagbufchan(5,i)   ! quality control mark or event indicator
@@ -789,9 +786,9 @@ contains
                  oma => oData1%chData(k)%oma
                  err => oData1%chData(k)%oer
 
-                 if(err .ne. udef .and. err .lt. 10.0)then
-                    oData1%chData(k)%imp = (oma**2 - omf**2) / err
-                    oData1%chData(k)%dfs = ( ( oma - omf ) * (omf) )  / err
+                 if(err .ne. udef )then!.and. err .lt. 10.0)then
+                    oData1%chData(k)%imp = (omf**2 - oma**2) / err**2
+                    oData1%chData(k)%dfs = ( ( omf - oma ) * (oma) )  / err**2
                  else
                     oData1%chData(k)%imp = udef
                     oData1%chData(k)%dfs = udef
@@ -825,7 +822,6 @@ contains
      self%nType => file1%nType
      self%nObs => file1%nObs
      self%MaxChanl => file1%MaxChanl
-     self%udef = file1%udef
 
 !     ierr = file2%close( )
 
@@ -1251,8 +1247,6 @@ contains
      type(obsInfo), pointer :: oType => null()
      integer :: i, j
 
-     iret = 0
-     
      if(.not.Self%impact)then
         iret = self%CalcStat( )
      endif

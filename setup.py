@@ -24,13 +24,11 @@ from numpy.distutils.core import Extension
 ext  = Extension(name = 'diag2python',
                  extra_f77_compile_args=["-fconvert=big-endian"],
                  extra_f90_compile_args=["-fconvert=big-endian"],
-                 extra_link_args=["-fconvert=big-endian"],
                  sources=[
-                          'gsidiag/f90/m_string.f90',
-                          'gsidiag/f90/ReadDiagMod.f90',
-                          'gsidiag/f90/ReadDiagModRad.f90',
-                          'gsidiag/f90/diag2python.f90',
-			  'gsidiag/f90/diag2python.pyf'])
+                          'gsidiag/fortran/m_string.f90',
+                          'gsidiag/fortran/ReadDiagMod.f90',
+                          'gsidiag/fortran/diag2python.f90',
+			  'gsidiag/fortran/diag2python.pyf'])
 
 if __name__ == "__main__":
     from numpy.distutils.core import setup
@@ -39,12 +37,13 @@ if __name__ == "__main__":
           description  = "Read and plot GSI diagnostics files",
           author       = "Joao Gerd Z. de Mattos",
           author_email = "joao.gerd@inpe.br",
-          packages     = ['gsidiag'],
+          packages=setuptools.find_packages(),
           package_data={'': ['table']},
 
-          install_requires=['numpy','matplotlib', 'xarray', 'cartopy'],
-          platforms = ['any'],
-          zip_safe = False, 
+#          packages     = ['gsidiag'],
+#          package_dir  = {'gsidiag':'src'},
+          install_requires=["numpy","matplotlib",'basemap'],
+          platforms = ["any"],
           ext_modules = [ext]
           )
 #          packages = setuptools.find_packages(),
