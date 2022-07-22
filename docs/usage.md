@@ -6,7 +6,7 @@ In order to use the readDiag, first one need to load the `gsidiag` module from t
 import gsidiag as gd
 ```
 
-With the module loaded, open a file containing the GSI diagnostic information. In this example, the file `[diag_conv_01.2020031112](https://github.com/GAD-DIMNT-CPTEC/readDiag/blob/master/data/diag_conv_01.2020031112)` (~64 Mb) is a diagnostic file provided by the GSI containing information from conventional observations used in the minimization of a 3DVar cost function for the date 2020031112. This file is provided to the user for testing purposes only and does not represent an operational situation by any means.
+With the module loaded, open a file containing the GSI diagnostic information. In this example, the file [`diag_conv_01.2020031112`](https://github.com/GAD-DIMNT-CPTEC/readDiag/blob/master/data/diag_conv_01.2020031112) (~64 Mb) is a diagnostic file provided by the GSI containing information from conventional observations used in the minimization of a 3DVar cost function for the date 2020031112. This file is provided to the user for testing purposes only and does not represent an operational situation by any means.
 
 For this, we will create the object `file` from which we will use the built-in methods and functions of the readDiag.
 
