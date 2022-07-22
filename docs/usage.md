@@ -6,15 +6,15 @@ In order to use the readDiag, first one need to load the `gsidiag` module from t
 import gsidiag as gd
 ```
 
-With the module loaded, open a file containing the GSI diagnostic information. In this example, the file `diag_conv_01.2020031112` (with ~64 Mb) is a diagnostic file provided by the GSI containing information from conventional observations used in the minimization of a 3DVar cost function for the date 2020031112. This file is provided to the user for testing purposes only.
+With the module loaded, open a file containing the GSI diagnostic information. In this example, the file `[diag_conv_01.2020031112](https://github.com/GAD-DIMNT-CPTEC/readDiag/blob/master/data/diag_conv_01.2020031112)` (~64 Mb) is a diagnostic file provided by the GSI containing information from conventional observations used in the minimization of a 3DVar cost function for the date 2020031112. This file is provided to the user for testing purposes only and does not represent an operational situation by any means.
 
-For this, we will create the object `file` from which we will use the builtin methods and functions of the readDiag.
+For this, we will create the object `file` from which we will use the built-in methods and functions of the readDiag.
 
 !!! note "Note"
 
-    The `%%time` is a Jupyter magic command that accounts for the time a command takes to run and it is not required for the use of the readDiag).
+    The `%%time` is a Jupyter magic command that accounts for the time a command takes to run and it is not required for the use of the readDiag.
 
-To load the provided conventional diagnostic file, do as follows:
+To load the provided diagnostic file, proceed as follows:
 
 === "Command"
 
@@ -42,7 +42,7 @@ file.kxcount(    file.overview(   file.plot(       file.varNames
 file.obs         file.pcount(     file.ptmap(      file.vcount(
 ```
 
-The built-in methos and functions have documentation which can be accessed using Python's docstrings by issuing the following command:
+The built-in methos and functions have documentation which can be accessed using the Python's docstrings by issuing the following command:
 
 ```python linenums="1"
 print(object.function_name.__doc__)
@@ -516,7 +516,7 @@ Using the function for the wind (`w`):
 
 ### Dataframe exploration
 
-The Pandas dataframe is a tabular data structure with its own built in functions and methods. This section shows some generic operations related to it.
+The Pandas dataframe is a tabular data structure with its own built-in functions and methods. This section shows some generic operations related to it.
 
 Previously, we learned that the method `obsInfo` returns a dictionary with one DataFrame for each observation, e.g., for the `t` (temperature) observation:
 
@@ -746,7 +746,7 @@ To get a figure with the series of the values of the `omf` by index of the tempe
 
     ![png](./imgs/fig05.png)
 
-Altought in the figure we can see that some indices shows greater values of `omf` (e.g., greater than +/- 10), we cannot figure out where nor at what level those observations are. In the next sections, some built in plotting functions from the readDiag are introduced in order to facilitate this kind of analysis.
+Altought in the figure we can see that some indices shows greater values of `omf` (e.g., greater than +/- 10), we cannot figure out where nor at what level those observations are. In the next sections, some built-in plotting functions from the readDiag are introduced in order to facilitate this kind of analysis.
 
 An alternative way to use select the columns of the Pandas dataframe is given below:
 

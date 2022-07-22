@@ -1,8 +1,8 @@
 # Installation
 
-To install the readDiag package it is recomended to the user to setup a specific Python environment. To this, an `environment.yml` file is provided to create the an environment using the Anaconda Python distribution.
+To install the readDiag package it is recomended to the user to setup a specific Python environment. For this purpose, an `environment.yml` file is provided to create the recommended environment using the [Anaconda Python distribution](https://www.anaconda.com/products/distribution).
 
-Some of the Python packages used by the readDiag include:
+Some of the Python packages required by the readDiag include:
 
 * matplotlib;
 * basemap;
@@ -12,7 +12,7 @@ Some of the Python packages used by the readDiag include:
 * libgeos;
 * geopandas.
 
-To create the Python environment to use the readDiag package, use the `conda` command (provided by the Anaconda installer):
+To create the Python environment for the readDiag package, use the `conda` command (provided by the Anaconda installer):
 
 ```bash linenums="1"
 conda env create -f environment.yml
@@ -22,14 +22,13 @@ conda env create -f environment.yml
 
     The installation of the readDiag package requires a Fortran compiler installed in the host machine. If the Python environment is correctly set up, there is no need to install any other packages.
 
-
-In order to install the readDiag package, activate it by issuing the command:
+In order to install the readDiag package, first activate it by issuing the command:
 
 ```bash linenums="1"
 conda activate readDiag
 ```
 
-and install the readDiag package with the command:
+and proceed to install the readDiag package with the command:
 
 ```bash linenums="1"
 python setup.py install
