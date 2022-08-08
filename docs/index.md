@@ -4,6 +4,5 @@ In order to facilitate the access to the contents of the [Gridpoint Statistical 
 
 The figure below was created with the use of the readDiag package and shows the spatial distribution of the wind observations of different kinds from different sources. All information is provided by the GSI diagnostic files.
 
-![png](./imgs/fig06.png)
 ![image](https://user-images.githubusercontent.com/6088258/183511751-21032794-b38c-44c0-8719-103ed1b98547.png)
 
