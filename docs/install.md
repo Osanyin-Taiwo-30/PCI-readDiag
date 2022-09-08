@@ -4,13 +4,19 @@ To install the readDiag package it is recomended to the user to setup a specific
 
 Some of the Python packages required by the readDiag include:
 
-* matplotlib;
 * basemap;
 * cartopy;
+* gcc;
+* geopandas;
+* geos;
+* gfortran;
+* matplotlib;
+* numpy;
+* pandas;
 * proj4;
 * pyproj;
-* libgeos;
-* geopandas.
+* python (3.7.6);
+* xarray.
 
 To create the Python environment for the readDiag package, use the `conda` command (provided by the Anaconda installer):
 
