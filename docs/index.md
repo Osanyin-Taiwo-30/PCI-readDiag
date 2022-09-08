@@ -1,7 +1,6 @@
 # readDiag
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/GAD-DIMNT-CPTEC/readDiag/HEAD)
-4
 
 In order to facilitate the access to the contents of the [Gridpoint Statistical Interpolation (GSI)](https://dtcenter.org/community-code/gridpoint-statistical-interpolation-gsi) diagnostic files, it has been written the [readDiag](https://github.com/GAD-DIMNT-CPTEC/readDiag) package wich is Fortran/Python interface that aims to read the GSI diagnostic binary files and create appropriate data structures to it. 
 
