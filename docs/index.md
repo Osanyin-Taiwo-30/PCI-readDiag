@@ -8,3 +8,4 @@ The figure below was created with the use of the readDiag package and shows the 
 
 ![image](https://user-images.githubusercontent.com/6088258/183511751-21032794-b38c-44c0-8719-103ed1b98547.png)
 
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode" target="_blank"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" alt="CC-BY-NC-SA" width="100"/></a>
