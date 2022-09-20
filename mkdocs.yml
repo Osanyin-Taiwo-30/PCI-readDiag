@@ -10,8 +10,14 @@ edit_uri: edit/main/docs/
 
 # Page tree
 nav:
-  - Installation: install.md
-  - Usage: usage.md
+  - English:
+    - index.md
+    - Installation: en/install.md
+    - Usage: en/usage.md
+  - Português:
+    - readDiag: pt/index.md
+    - Instalação: pt/instalacao.md
+    - Uso: pt/uso.md
 
 #Configuration
 theme: 
@@ -24,7 +30,7 @@ theme:
     - content.tabs.link
 #    - navigation.instant
 #    - navigation.tracking
-#    - navigation.tabs
+    - navigation.tabs
     - navigation.tabs.sticky
 #    - navigation.sections
 #    - navigation.top
