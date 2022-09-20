@@ -42,7 +42,7 @@ file.kxcount(    file.overview(   file.plot(       file.varNames
 file.obs         file.pcount(     file.ptmap(      file.vcount(
 ```
 
-The built-in methos and functions have documentation which can be accessed using the Python's docstrings by issuing the following command:
+The built-in methods and functions have documentation which can be accessed using the Python's docstrings by issuing the following command:
 
 ```python linenums="1"
 print(object.function_name.__doc__)
@@ -391,7 +391,7 @@ For the `ps`observation:
     
     86479 rows x 18 columns
 
-Note that the outcome of the command `file.obsInfo['ps']` returned a Pandas dataframe (acctually a multiindex dataframe) with all the information related with the `ps` (surface pressure) observation. More information on how to handle the dataframe and filter out some information are given on the next sections.
+Note that the outcome of the command `file.obsInfo['ps']` returned a Pandas dataframe (actually a multiindex dataframe) with all the information related with the `ps` (surface pressure) observation. More information on how to handle the dataframe and filter out some information are given on the next sections.
 
 Use the attribute `varNames` to get a list of the variable names from the file:
 
@@ -449,7 +449,7 @@ To get a list of the available standard vertical levels, use the attribute `zlev
     ```
 ## Data exploration
 
-On the previous section it has been given an overview about the functions and methods of the readDiag package. In this section, it is given an overview of how to handle the Pandas dataframe in order to retrive and filter out some information related to the observations from the provided conventionan diagnostic file. 
+On the previous section it has been given an overview about the functions and methods of the readDiag package. In this section, it is given an overview of how to handle the Pandas dataframe in order to retrieve and filter out some information related to the observations from the provided conventional diagnostic file. 
 
 To simply count the number of records of some kind of observation, use the function `pcount()`. This method returns a histogram with the count of kinds (i.e., `kx`) of a given observation:
 
@@ -476,7 +476,7 @@ Using the function for the surface pressure (`ps`):
 
 === "Result"
 
-    ![png](imgs/fig01.png)
+    ![png](../imgs/fig01.png)
 
 Using the function for the temperature (`t`):
 
@@ -488,7 +488,7 @@ Using the function for the temperature (`t`):
 
 === "Result"
 
-    ![png](imgs/fig02.png)
+    ![png](../imgs/fig02.png)
 
 Using the function for the moisture (`q`):
 
@@ -500,7 +500,7 @@ Using the function for the moisture (`q`):
 
 === "Result"
 
-    ![png](imgs/fig03.png)
+    ![png](../imgs/fig03.png)
 
 Using the function for the wind (`w`):
 
@@ -512,13 +512,13 @@ Using the function for the wind (`w`):
 
 === "Result"
 
-    ![png](imgs/fig04.png)
+    ![png](../imgs/fig04.png)
 
 ### Dataframe exploration
 
 The Pandas dataframe is a tabular data structure with its own built-in functions and methods. This section shows some generic operations related to it.
 
-Previously, we learned that the method `obsInfo` returns a dictionary with one DataFrame for each observation, e.g., for the `t` (temperature) observation:
+Previously, we learned that the method `obsInfo` returns a dictionary with one dataframe for each observation, e.g., for the `t` (temperature) observation:
 
 === "Command"
 
@@ -602,7 +602,7 @@ If you want to filter all the temperature observations by the kind 120, you may 
     |   |	  ...|	       ...|     ...	|   ...|       ...|          ...|	   ...|	      ...| ...| ...|...  |     ...|	        ...|         ...|	        ...|         ...|       ...|     ... |	...                      |
 
 
-As the same way we did before, we will create another variable `df_t120` wich will hold the information of the temperature observation of the kind 120:
+As the same way we did before, we will create another variable `df_t120` which will hold the information of the temperature observation of the kind 120:
 
 ```python linenums="1"
 df_t120 = df_t.iloc[df_t.index.get_level_values('kx') == 120]
@@ -671,13 +671,13 @@ Let's count the number of observations marked with the `iuse=1` and `iuse=-1` (i
     array([ 1., -1.], dtype=float32)
     ```
 
-Below, the `dt_120_iuse` is a variable wich holds just the `iuse` column of the `df_t120` dataframe:
+Below, the `dt_120_iuse` is a variable which holds just the `iuse` column of the `df_t120` dataframe:
 
 ```python linenums="1"
 df_t120_iuse = df_t120['iuse']
 ```
 
-To count the number of temperature observations of the kind 120 marked with the flag `iuse=1`or `iused=-1`, use the pandas `count()` method:
+To count the number of temperature observations of the kind 120 marked with the mark `iuse=1` or `iused=-1`, use the pandas `count()` method:
 
 
 === "Command"
@@ -692,7 +692,7 @@ To count the number of temperature observations of the kind 120 marked with the 
     30572
     ```
 
-And for the `iuse=-1` flag:
+And for the `iuse=-1` mark:
 
 === "Command"
 
@@ -708,7 +708,7 @@ And for the `iuse=-1` flag:
 
 Note that the `30572 + 184 = 30756` accounts for the total number of rows of the `df_t120` dataframe (which accounts for the total number of observations).
 
-If you want to plot a series of OMF (Observation Minus Forecast), which accounts for the innovation brought by the observations to the forecast during the assimilation process, its possible to filter out the `omf` column and retrieve just the observations marked with the flag `iuse = 1` (in this case the temperature observations of the kind 120):
+If you want to plot a series of OMF (Observation Minus Forecast), which accounts for the innovation brought by the observations to the forecast during the assimilation process, its possible to filter out the `omf` column and retrieve just the observations marked with the mark `iuse=1` (in this case the temperature observations of the kind 120):
 
 === "Command"
 
@@ -744,9 +744,9 @@ To get a figure with the series of the values of the `omf` by index of the tempe
 
 === "Result"
 
-    ![png](./imgs/fig05.png)
+    ![png](../imgs/fig05.png)
 
-Altought in the figure we can see that some indices shows greater values of `omf` (e.g., greater than +/- 10), we cannot figure out where nor at what level those observations are. In the next sections, some built-in plotting functions from the readDiag are introduced in order to facilitate this kind of analysis.
+Although in the figure we can see that some indices shows greater values of `omf` (e.g., greater than +/- 10), we cannot figure out where nor at what level those observations are. In the next sections, some built-in plotting functions from the readDiag are introduced in order to facilitate this kind of analysis.
 
 An alternative way to use select the columns of the Pandas dataframe is given below:
 
@@ -781,7 +781,7 @@ Until here, all methods and functions from the readDiag package have been used t
 These functions are:
 
 * `ptmap()`: this function plots the selected observation for the selected kinds;
-* `pvmap()`: this function plots the selected observations without specifying its kinds. It used the flag iuse instead;
+* `pvmap()`: this function plots the selected observations without specifying its kinds. It used the mark iuse instead;
 * `plot()`: this function makes a plot for the selected observation by using information of the following columns available within the dataframe.
 
 Use the built-in function `ptmap()` to plot the spatial distribution of some observation by type (`kx`). Remember to use the docstring to get an overview of its usage:
@@ -823,7 +823,7 @@ Using the `ptmap` function with the `uv` variable:
     Wall time: 17.5 s
     ```
 
-    ![png](./imgs/fig06.png)
+    ![png](../imgs/fig06.png)
 
 As the built-in function `ptmap()` uses the information about the observation and its kind, it is also possible to pass a list of `kx` related to that observation type (this also helps to unclutter the plot and takes significantly less time to get the plot the figure). Remember that you can use the built-in function `pfileinfo()` to retrieve the `kx` of each existing observation:
 
@@ -842,9 +842,9 @@ As the built-in function `ptmap()` uses the information about the observation an
     Wall time: 3.1 s
     ```
     
-    ![png](./imgs/fig07.png)
+    ![png](../imgs/fig07.png)
 
-Another interesting built-in function is the function `pvmap()` which plots the spatial distribution of different observations considering all the kinds for a given observation. In this case, it is needed to specify the `iuse` flag of the observation to be plotted, i.e., `iuse = 1` for used and `iuse = -1` for monitored. The statuses of the observations must be passed as a list with at least one element:
+Another interesting built-in function is the function `pvmap()` which plots the spatial distribution of different observations considering all the kinds for a given observation. In this case, it is needed to specify the `iuse` mark of the observation to be plotted, i.e., `iuse=1` for used and `iuse=-1` for monitored. The statuses of the observations must be passed as a list with at least one element:
 
 === "Command"
 
@@ -863,7 +863,7 @@ Another interesting built-in function is the function `pvmap()` which plots the 
     In the above example, a plot for the used (iuse=1) observations of wind (uv), surface pressure (ps), temperature (t) and moisture (q) will be made.        
     ```
 
-Using the `pvmap` function with a list of variables filtered out by the `iuse=1` flag:
+Using the `pvmap` function with a list of variables filtered out by the `iuse=1` mark:
 
 === "Command"
 
@@ -880,9 +880,9 @@ Using the `pvmap` function with a list of variables filtered out by the `iuse=1`
     Wall time: 10.8 s
     ```
     
-    ![png](./imgs/fig08.png)
+    ![png](../imgs/fig08.png)
 
-The built-in funtion `plot` plots the spatial distribution of variables using one of the columns of the dataframe. In the example below, we made a plot for the values (when the column `obs` is used) of the used surface pressure observations of the kind 187:
+The built-in function `plot` plots the spatial distribution of variables using one of the columns of the dataframe. In the example below, we made a plot for the values (when the column `obs` is used) of the used surface pressure observations of the kind 187:
 
 === "Command"
 
@@ -913,7 +913,7 @@ The built-in funtion `plot` plots the spatial distribution of variables using on
     In the above example, a plot will be made displaying by using the values of the used surface pressure observations of the kind 187 (ADPSFC).
     ```
 
-Using the `plot` function with the `ps` observation of kind 187 filtered out by the `iuse=1` flag:
+Using the `plot` function with the `ps` observation of kind 187 filtered out by the `iuse=1` mark:
 
 === "Command"
 
@@ -930,7 +930,7 @@ Using the `plot` function with the `ps` observation of kind 187 filtered out by 
     Wall time: 2.44 s
     ```
     
-    ![png](./imgs/fig09.png)
+    ![png](../imgs/fig09.png)
 
 As final step, in order to release the memory used to hold the binary file, use the `close` method, which should return `0` when the file is correctly closed:
 

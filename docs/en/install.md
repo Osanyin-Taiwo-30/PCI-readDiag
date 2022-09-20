@@ -1,6 +1,6 @@
 # Installation
 
-To install the readDiag package it is recomended to the user to setup a specific Python environment. For this purpose, an `environment.yml` file is provided to create the recommended environment using the [Anaconda Python distribution](https://www.anaconda.com/products/distribution).
+To install the readDiag package it is recommended to the user to setup a specific Python environment. For this purpose, an `environment.yml` file is provided to create the recommended environment using the [Anaconda Python distribution](https://www.anaconda.com/products/distribution).
 
 Some of the Python packages required by the readDiag include:
 
