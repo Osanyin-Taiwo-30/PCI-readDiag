@@ -49,7 +49,7 @@ if __name__ == "__main__":
           packages=['gsidiag'],
           package_data={'': ['table']},
 
-          install_requires=['numpy>=1.22','matplotlib==3.8.2', 'xarray', 'Cartopy>=0.22.0', 'geopandas', 'jupyterlab'],
+          install_requires=['numpy>=1.22','matplotlib==3.8.2', 'xarray', 'Cartopy>=0.22.0', 'geopandas', 'jupyterlab', 'panel', 'hvplot', 'geoviews'],
           platforms=['any'],
           zip_safe=False, 
           ext_modules=[ext],

@@ -39,8 +39,10 @@ import matplotlib as mpl
 import matplotlib.ticker as mticker
 from matplotlib.offsetbox import AnchoredOffsetbox, TextArea, HPacker, VPacker
 
+import panel as pn
+
 def help():
-    print('Esta é uma ajudada')
+    print('Esta é uma ajuda')
 
 def getColor(minVal, maxVal, value, hex=False, cmapName=None):
 
@@ -658,7 +660,6 @@ class plot_diag(object):
         else:
             legend = kwargs['legend']
             kwargs['legend'] = False
-                
         
         ax = geoMap(area=area,ax=ax)
 
@@ -696,6 +697,49 @@ class plot_diag(object):
 
 
         return ax
+
+    def ptmap_hvplot(self, varName, kx, level, iuse):
+        try:
+            df = self.obsInfo[varName]
+
+            maskl = df['press'] == level
+            dffl = df[maskl]
+
+            maski = dffl['iuse'] == iuse
+            dffi = dffl[maski]
+
+            instr = getVarInfo(kx, varName, 'instrument')
+            label = '\n'.join(wrap(varName + '-' + str(kx) + ' | ' + instr,30))
+
+            ax = dffi.hvplot(global_extent=True,
+                             grid=True,
+                             tiles=True,
+                             title=label,
+                             #rasterize=True,
+                             frame_height=800)
+        except:
+            ax = pn.Row('Data unavailable for the selection.')
+        return pn.Column(ax) 
+
+    def ptmap_hvplot_multi(self, varName, kx, level, iuse):
+        try:
+            df = self.obsInfo[varName].loc[kx]
+
+            maskl = df['press'] == level
+            dffl = df[maskl]
+            
+            maski = dffl['iuse'] == iuse
+            dffi = dffl[maski]
+
+            ax = dffi.hvplot(global_extent=True,
+                             grid=True,
+                             tiles=True,
+                             #rasterize=True,
+                             frame_height=800)
+        except:
+            ax = pn.Row('Data unavailable for the selection.')
+        return pn.Column(ax) 
+
 
     def pvmap(self, varName=None, mask=None, area=None, **kwargs):
         '''
@@ -831,6 +875,37 @@ class plot_diag(object):
         plt.ylabel('Number of Observations')
         plt.xlabel('KX')
         plt.title('Variable Name : '+varName)
+
+    def pcount_hvplot(self, varName, kx, all_kx_by_level, kx_by_level):
+        try:
+            if all_kx_by_level:
+                df = self.obsInfo[varName].groupby('press').size()
+                ax = df.hvplot.bar(x='press', 
+                                   #color=colors, 
+                                   grid=True, 
+                                   rot=45,
+                                   ylabel='Number of Observations',
+                                   title='Variable Name: ' + str(varName))
+            elif kx_by_level:
+                df = self.obsInfo[varName].loc[kx].groupby('press').size()
+                ax = df.hvplot.bar(x='press', 
+                                   #color=colors, 
+                                   grid=True, 
+                                   rot=45,
+                                   ylabel='Number of Observations',
+                                   title='Variable Name: ' + str(varName) + ' | kx = ' + str(kx))
+            else:
+                df = self.obsInfo[varName].groupby(level=0).size()
+                ax = df.hvplot.bar(x='kx', 
+                                   #color=colors, 
+                                   grid=True, 
+                                   rot=45,
+                                   ylabel='Number of Observations',
+                                   title='Variable Name: ' + str(varName))
+        except:
+            ax = pn.Row('Data unavailable for the selection.')
+        return pn.Column(ax)
+
  
     def vcount(self,**kwargs):
 
